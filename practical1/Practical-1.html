@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote for Favorite one!</title>
+    <link rel="stylesheet" href="Practical-1.css">
+</head>
+<body>
+    <div class="vote-container">
+        <h1 class="heading">Vote for Favorite one!</h1>
+        <div class="btn-group">
+            <button class="but" onclick="vote('JavaScript')">JavaScript</button>
+            <button class="but" onclick="vote('Python')">Python</button>
+            <button class="but" onclick="vote('Java')">Java</button>
+        </div>
+        <div class="result">
+            <h2>Results</h2>
+            <p>JavaScript: <span id="js-votes">0</span> votes</p>
+            <p>Python: <span id="py-votes">0</span> votes</p>
+            <p>Java: <span id="java-votes">0</span> votes</p>
+        </div>
+    </div>
+    <script src="Practical-1.js"></script>
+</body>
+</html>

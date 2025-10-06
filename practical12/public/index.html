@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🧮 Kids Calculator - Fun Math!</title>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .calculator-container {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            opacity: 0.1;
+            z-index: 0;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: #6c5ce7;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #74b9ff;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2d3436;
+            margin-bottom: 8px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #6c5ce7;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.2);
+        }
+
+        .operation-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .operation-btn {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .operation-btn.add {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: white;
+        }
+
+        .operation-btn.subtract {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+        }
+
+        .operation-btn.multiply {
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
+            color: white;
+        }
+
+        .operation-btn.divide {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+        .operation-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .operation-btn.selected {
+            transform: scale(0.95);
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.4);
+        }
+
+        .calculate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-container {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 20px;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+
+        .result-container.success {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .result-container.error {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+        }
+
+        .result-container.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .result-emoji {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+
+        .result-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .result-calculation {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #6c5ce7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            .calculator-container {
+                margin: 10px;
+                padding: 25px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .operation-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .decorative-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { top: 20%; right: 10%; animation-delay: 2s; }
+        .shape:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 4s; }
+        .shape:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="decorative-shapes">
+            <div class="shape">🌟</div>
+            <div class="shape">🎈</div>
+            <div class="shape">🌈</div>
+            <div class="shape">⭐</div>
+        </div>
+        
+        <div class="content">
+            <h1 class="title">🧮 Kids Calculator</h1>
+            <p class="subtitle">Let's do some fun math together! 🎉</p>
+            
+            <form id="calculatorForm">
+                <div class="form-group">
+                    <label for="number1">🔢 First Number:</label>
+                    <input type="number" id="number1" name="number1" placeholder="Enter your first number..." step="any">
+                </div>
+                
+                <div class="form-group">
+                    <label for="number2">🔢 Second Number:</label>
+                    <input type="number" id="number2" name="number2" placeholder="Enter your second number..." step="any">
+                </div>
+                
+                <div class="form-group">
+                    <label>🎯 Choose Operation:</label>
+                    <div class="operation-buttons">
+                        <button type="button" class="operation-btn add" data-operation="add">
+                            ➕ Add
+                        </button>
+                        <button type="button" class="operation-btn subtract" data-operation="subtract">
+                            ➖ Subtract
+                        </button>
+                        <button type="button" class="operation-btn multiply" data-operation="multiply">
+                            ✖️ Multiply
+                        </button>
+                        <button type="button" class="operation-btn divide" data-operation="divide">
+                            ➗ Divide
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="calculate-btn" id="calculateBtn">
+                    🚀 Calculate Now!
+                </button>
+            </form>
+            
+            <div class="result-container hidden" id="resultContainer">
+                <div class="result-emoji" id="resultEmoji"></div>
+                <div class="result-text" id="resultText"></div>
+                <div class="result-calculation" id="resultCalculation"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOperation = null;
+        
+        // Handle operation button selection
+        document.querySelectorAll('.operation-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove selected class from all buttons
+                document.querySelectorAll('.operation-btn').forEach(b => b.classList.remove('selected'));
+                
+                // Add selected class to clicked button
+                this.classList.add('selected');
+                selectedOperation = this.dataset.operation;
+                
+                // Add a fun animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // Handle form submission
+        document.getElementById('calculatorForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const number1 = document.getElementById('number1').value;
+            const number2 = document.getElementById('number2').value;
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            
+            // Validation
+            if (!selectedOperation) {
+                showResult(false, "Please choose an operation! 🎯", "😊", "");
+                return;
+            }
+            
+            // Show loading
+            calculateBtn.innerHTML = '<span class="loading"></span>Calculating...';
+            calculateBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/calculate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        number1: number1,
+                        number2: number2,
+                        operation: selectedOperation
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showResult(true, result.message, result.emoji, result.calculation);
+                } else {
+                    showResult(false, result.error, result.emoji, "");
+                }
+                
+            } catch (error) {
+                showResult(false, "Something went wrong! Please try again. 🤔", "😅", "");
+            } finally {
+                calculateBtn.innerHTML = '🚀 Calculate Now!';
+                calculateBtn.disabled = false;
+            }
+        });
+        
+        function showResult(success, message, emoji, calculation) {
+            const resultContainer = document.getElementById('resultContainer');
+            const resultEmoji = document.getElementById('resultEmoji');
+            const resultText = document.getElementById('resultText');
+            const resultCalculation = document.getElementById('resultCalculation');
+            
+            // Update content
+            resultEmoji.textContent = emoji;
+            resultText.textContent = message;
+            resultCalculation.textContent = calculation;
+            
+            // Update styling
+            resultContainer.className = 'result-container ' + (success ? 'success' : 'error');
+            
+            // Show with animation
+            setTimeout(() => {
+                resultContainer.classList.remove('hidden');
+            }, 100);
+            
+            // Hide after 5 seconds if it's an error
+            if (!success) {
+                setTimeout(() => {
+                    resultContainer.classList.add('hidden');
+                }, 5000);
+            }
+        }
+        
+        // Add fun interactions
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.background = '#e8f4fd';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.background = '#f8f9ff';
+            });
+        });
+        
+        // Clear result when user starts typing
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                const resultContainer = document.getElementById('resultContainer');
+                if (!resultContainer.classList.contains('hidden')) {
+                    resultContainer.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

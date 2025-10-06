@@ -1,0 +1,107 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f8f9fa;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #212529;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+}
+
+/* Main container */
+.container {
+  background-color: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Title */
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #343a40;
+}
+
+/* Counter number display */
+.counter {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #198754;
+  margin: 1.5rem 0;
+}
+
+/* Button container */
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.buttons button {
+  width: 100px;
+  height: 60px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10%;
+  background-color: #198754;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+  box-shadow: 0 4px 8px rgba(25, 135, 84, 0.2);
+}
+
+.buttons button:hover {
+  background-color: #157347;
+  transform: scale(1.05);
+}
+
+/* Reset button */
+.reset {
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 0.7rem;
+  background-color: #dc3545;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
+}
+
+.reset:hover {
+  background-color: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .buttons {
+    flex-direction: row;
+    gap: 1.2rem;
+  }
+
+  .buttons button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+
+  .counter {
+    font-size: 3.5rem;
+  }
+}

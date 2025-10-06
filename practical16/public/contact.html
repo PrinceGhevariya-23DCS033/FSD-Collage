@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .container {    
+            max-width: 420px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
+            padding: 36px 28px 28px 28px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2a6edb;
+            margin-bottom: 24px;
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        input,
+        textarea {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1.5px solid #bcd6f7;
+            border-radius: 8px;
+            font-size: 1.08em;
+            background: #f7faff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            background: linear-gradient(90deg, #2a6edb 0%, #6dd5ed 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 32px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #1a4e9b 0%, #2a6edb 100%);
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        .msg {
+            font-size: 1.08em;
+            margin-bottom: 18px;
+        }
+
+        .success {
+            color: #27ae60;
+        }
+
+        .error {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Contact Me</h1>
+        <form action="/contact" method="POST" autocomplete="off">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="msg" id="formMsg"></div>
+        <div id="transportInfo" style="font-size:0.95em;margin-top:8px;color:#555"></div>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const formMsg = document.getElementById('formMsg');
+        const transportInfo = document.getElementById('transportInfo');
+
+        if (params.has('success')) {
+            formMsg.textContent = 'Message sent successfully!';
+            formMsg.className = 'msg success';
+            const source = params.get('source');
+            if (source === 'ethereal') {
+                transportInfo.innerHTML = 'Note: Email was sent using Ethereal (development test); check the server logs for the preview URL.';
+            } else if (source === 'gmail') {
+                transportInfo.textContent = 'Email sent via Gmail SMTP.';
+            }
+        } else if (params.has('error')) {
+            formMsg.textContent = 'Failed to send message. Please try again.';
+            formMsg.className = 'msg error';
+            const err = params.get('error');
+            if (err) transportInfo.textContent = decodeURIComponent(err);
+        }
+    </script>
+</body>
+
+</html>

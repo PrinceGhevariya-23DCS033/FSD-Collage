@@ -1,0 +1,36 @@
+[2010-05-12 14:23:10,125] DEBUG - [main] BulkOpsClient.main(): Execution begin.
+
+[2010-05-12 14:23:10,125] DEBUG - [main] BulkOpsClient.main(): List of all 
+configurations loaded: {numofthreads=2, impstatchkinterval=45, maxloginattempts=3, 
+manifestfiledir=.\Manifest\, sessionkeepchkinterval=300, routingurl=https://
+sso.crmondemand.com, hosturl=http://sdchs20n301.us.oracle.com, testmode=release, 
+maxthreadfailure=2, logintimeoutms=120000, csvblocksize=500, maxsoapsize=8192}
+
+[2010-05-12 14:23:10,125] DEBUG - [main] BulkOpsClient.main(): List of all options 
+loaded: {password=*********, clientloglevel=normal, waitforcompletion=True, 
+datetimeformat=iso, importloglevel=all, datafilepath=.\\data\\contact.csv, 
+operation=update, help=False, mapfilepath=.\\data\\contact.map, 
+clientlogfiledir=., recordtype=contact, duplicatecheckoption=none, 
+username=demo/admin, csvdelimiter=|}
+
+[2010-05-12 14:23:10,140]  INFO - [main] Attempting to log in...
+
+[2010-05-12 14:23:11,442]  INFO - [main] Successfully logged in as: demo/admin
+
+[2010-05-12 14:23:11,442] DEBUG - [main] BulkOpsClient.doImport(): Execution begin.
+
+[2010-05-12 14:23:11,442]  INFO - [main] Validating Oracle Data Loader On Demand 
+Import request...
+
+
+[2010-05-12 14:23:16,109] DEBUG - [main] BulkOpsClient.doImport(): Execution 
+complete.
+
+[2010-05-12 14:23:16,125]  INFO - [main] Attempting to log out...
+
+[2010-05-12 14:23:17,532]  INFO - [main] demo/admin is now logged out.
+
+[2010-05-12 14:23:17,532] DEBUG - [Thread-1] ODWSSessionKeeperThread.Run(): 
+Interrupted.
+
+[2010-05-12 14:23:17,532] DEBUG - [main] BulkOpsClient.main(): Execution complete.

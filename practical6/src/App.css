@@ -1,0 +1,169 @@
+.app-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #1a1a2e;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.task-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.task-input {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  background: #16213e;
+  color: white;
+  font-size: 1rem;
+}
+
+.task-input::placeholder {
+  color: #8a8a8a;
+}
+
+.add-button {
+  padding: 0.8rem 1.5rem;
+  background: #7b2cbf;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-button:hover {
+  background: #9d4edd;
+}
+
+.mic-button {
+  padding: 0.8rem;
+  background: #ff6b6b;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+  min-width: 50px;
+}
+
+.mic-button:hover {
+  background: #ff5252;
+}
+
+.mic-button.listening {
+  background: #4CAF50;
+  animation: pulse 1.5s infinite;
+}
+
+.mic-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #16213e;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.task-item:hover {
+  transform: translateX(5px);
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.task-content input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-btn, .delete-btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  font-size: 1.2rem;
+}
+
+.edit-container {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #2a2a4a;
+  color: white;
+}
+
+.save-btn {
+  padding: 0.5rem 1rem;
+  background: #4CAF50;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #8a8a8a;
+}
+
+.empty-message {
+  text-align: center;
+  color: #8a8a8a;
+  font-style: italic;
+}

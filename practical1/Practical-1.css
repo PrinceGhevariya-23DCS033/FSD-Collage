@@ -1,0 +1,60 @@
+.vote-container {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #e3f2fd;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px #90caf9;
+    padding: 28px 18px 18px 18px;
+    text-align: center;
+    margin-top: 200px;
+}
+
+.heading {
+    font-size: 2rem;
+    color: #1565c0;
+    margin-bottom: 24px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.but {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.but:hover {
+    background: #1565c0;
+    color: #fff;
+}
+
+.result {
+    background: #bbdefb;
+    border-radius: 8px;
+    padding: 12px 0 8px 0;
+    margin-top: 8px;
+    box-shadow: 0 1px 4px #90caf9;
+}
+.result h2 {
+    color: #1565c0;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.result p {
+    color: #222;
+    font-size: 1rem;
+    margin: 3px 0;
+    font-family: Arial, sans-serif;
+}

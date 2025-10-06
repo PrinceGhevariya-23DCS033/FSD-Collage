@@ -1,0 +1,111 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.calculator {
+  width: 320px;
+  background-color: #2c3e50;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.display {
+  background-color: #34495e;
+  padding: 24px;
+  text-align: right;
+  color: white;
+}
+
+.expression {
+  font-size: 16px;
+  color: #7ed6df;
+  height: 24px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  font-weight: 300;
+}
+
+.current-value {
+  font-size: 38px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #dff9fb;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-row {
+  display: flex;
+  background-color: #16a085;
+}
+
+.button-row button {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  padding: 18px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.button-row button:hover {
+  background-color: #1abc9c;
+  transform: translateY(-2px);
+}
+
+.button-row button:last-child {
+  background-color: #e74c3c;
+}
+
+.button-row button:last-child:hover {
+  background-color: #c0392b;
+}
+
+.number-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background-color: #2c3e50;
+  padding: 2px;
+}
+
+.number-pad button {
+  border: none;
+  background-color: #34495e;
+  color: #ecf0f1;
+  font-size: 26px;
+  padding: 25px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+.number-pad button:hover {
+  background-color: #4a6377;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.number-pad button:nth-last-child(1) {
+  background-color: #3498db;
+  font-weight: bold;
+  color: white;
+}
+
+.number-pad button:nth-last-child(1):hover {
+  background-color: #2980b9;
+}

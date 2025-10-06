@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Income Calculation Result</title>
+  <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      max-width: 400px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: 22px;
+      color: #4caf50;
+    }
+
+    .result-box {
+      background: #e8f5e8;
+      border: 1px solid #4caf50;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .result-box p {
+      font-size: 16px;
+      color: #2e7d32;
+      margin: 10px 0;
+    }
+
+    .total {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1b5e20;
+      border-top: 2px solid #4caf50;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+
+    a {
+      display: inline-block;
+      padding: 10px 18px;
+      background-color: #007BFF;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>✅ Calculation Successful!</h1>
+    </header>
+
+    <main>
+      <div class="result-box">
+        <p><strong>Income Source 1:</strong> $<%= income1.toFixed(2) %></p>
+        <p><strong>Income Source 2:</strong> $<%= income2.toFixed(2) %></p>
+        <p class="total"><strong>Total Income:</strong> $<%= totalIncome.toFixed(2) %></p>
+      </div>
+      <a href="/">Calculate Again</a>
+    </main>
+  </div>
+</body>
+</html>

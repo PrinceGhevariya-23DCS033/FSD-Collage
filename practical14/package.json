@@ -1,0 +1,28 @@
+{
+  "name": "job-portal-resume-upload",
+  "version": "1.0.0",
+  "description": "A job portal with secure resume upload functionality - only allows PDF files up to 2MB",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "express",
+    "file-upload",
+    "multer",
+    "job-portal",
+    "resume-upload",
+    "pdf-validation"
+  ],
+  "author": "Student",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

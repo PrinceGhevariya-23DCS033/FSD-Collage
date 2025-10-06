@@ -1,0 +1,10 @@
+/* Minimal custom CSS for Bootstrap compatibility */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+/* Override Bootstrap styles if needed */
+.min-vh-100 {
+  min-height: 100vh !important;
+}
